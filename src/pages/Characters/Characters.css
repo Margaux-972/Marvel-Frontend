@@ -1,0 +1,48 @@
+/* PAGE */
+.characters-page {
+  color: white;
+}
+
+.characters-page img {
+  margin: 10px 65px 0;
+}
+
+/* CARD */
+.characters-page article {
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.characters-page article:hover {
+  transform: translateY(-8px) scale(1.03);
+  /* box-shadow: 0 10px 25px rgba(230, 36, 41, 0.4); */
+  box-shadow:
+    0 0 15px #e62429,
+    0 0 30px #e62429;
+}
+
+/* TITLE */
+.characters-page article h2 {
+  padding: 10px;
+  font-size: 1.2rem;
+  color: #e62429;
+}
+
+/* DESCRIPTION */
+.characters-page article p {
+  padding: 0 10px 15px;
+  font-size: 16px;
+  opacity: 0.8;
+  color: white;
+  font-family: "Quicksand", sans-serif;
+}
+
+/* LINK */
+.characters-page article a {
+  text-decoration: none;
+}
