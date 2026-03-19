@@ -15,7 +15,7 @@ const Header = () => {
         <Link to="/Comics">
           <button>Comics</button>
         </Link>
-        <Link to="/Comics">
+        <Link to="/Favorites">
           <button>Favorites</button>
         </Link>
       </div>
