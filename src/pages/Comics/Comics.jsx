@@ -1,6 +1,7 @@
 import "./Comics.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 const Comics = () => {
   const [data, setData] = useState(null);
@@ -29,6 +30,7 @@ const Comics = () => {
   }, [title, page]);
 
   const totalPages = data ? Math.ceil(data.count / data.limit) : 0;
+  // const token =
 
   return (
     <main className="comics-page">

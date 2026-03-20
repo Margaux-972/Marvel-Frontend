@@ -1,0 +1,12 @@
+.comic-component h2 {
+  color: white;
+}
+
+.comic-component {
+  border: solid 1px red;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

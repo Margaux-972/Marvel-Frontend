@@ -40,10 +40,12 @@ const Char = () => {
               alt="character image"
             />
             <p>{data.description}</p>
-            {data.comics.map((comicId) => {
-              // console.log(char);
-              return <Comic comicId={comicId} key={comicId} />;
-            })}
+            <div>
+              {data.comics.map((comicId) => {
+                // console.log(char);
+                return <Comic comicId={comicId} key={comicId} />;
+              })}
+            </div>
           </section>
         )}
       </div>

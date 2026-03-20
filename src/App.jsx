@@ -1,10 +1,12 @@
 import "./App.css";
-import Home from "./pages/Home/Home";
 import Char from "./pages/Char/Char";
-import Characters from "./pages/Characters/Characters";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 import Comics from "./pages/Comics/Comics";
+import Signup from "./pages/Signup/Signup";
 import Header from "./components/Header/Header";
 import Favorites from "./pages/Favorites/Favorites";
+import Characters from "./pages/Characters/Characters";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -18,6 +20,9 @@ function App() {
           <Route path="/comics" element={<Comics />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/character/:_id" element={<Char />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<div className="container">OOPS !!</div>} />
         </Routes>
       </Router>
     </>

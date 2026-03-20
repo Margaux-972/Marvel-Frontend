@@ -28,7 +28,7 @@ const Comic = ({ comicId }) => {
   return isLoading ? (
     <p>Chargement...</p>
   ) : (
-    <div key={comicId}>
+    <div key={comicId} className="comic-component">
       {/* {console.log("data", data)} */}
       {/* {console.log("data.thumbnail", data.thumbnail)} */}
       {data.thumbnail && (

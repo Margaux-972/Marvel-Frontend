@@ -9,15 +9,25 @@ const Header = () => {
         <img src={logo} alt="logo Marvel" />
       </Link>
       <div>
-        <Link to="/Characters">
-          <button>Characters</button>
-        </Link>
-        <Link to="/Comics">
-          <button>Comics</button>
-        </Link>
-        <Link to="/Favorites">
-          <button>Favorites</button>
-        </Link>
+        <section>
+          <Link to="/characters">
+            <button>Characters</button>
+          </Link>
+          <Link to="/comics">
+            <button>Comics</button>
+          </Link>
+          <Link to="/favorites">
+            <button>Favorites</button>
+          </Link>
+        </section>
+        <section>
+          <Link to="/login">
+            <button>LOG IN</button>
+          </Link>
+          <Link to="/signup">
+            <button>SIGN UP</button>
+          </Link>
+        </section>
       </div>
     </header>
   );
