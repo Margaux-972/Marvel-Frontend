@@ -5,8 +5,6 @@ import { useState, useEffect } from "react";
 const Comic = ({ comicId }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  //   const { _id } = useParams();
-  //   console.log(comicId);
 
   useEffect(() => {
     const fetchData = async () => {

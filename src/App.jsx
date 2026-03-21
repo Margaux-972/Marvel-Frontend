@@ -1,4 +1,6 @@
 import "./App.css";
+import Cookies from "js-cookie";
+import Com from "./pages/Com/Com";
 import Char from "./pages/Char/Char";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -10,6 +12,8 @@ import Characters from "./pages/Characters/Characters";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  const userToken = Cookies.get("userToken");
+
   return (
     <>
       <Router>
@@ -20,9 +24,14 @@ function App() {
           <Route path="/comics" element={<Comics />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/character/:_id" element={<Char />} />
+          <Route path="/comic/:_id" element={<Com />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="*" element={<div className="container">OOPS !!</div>} />
+          <Route
+            path="/favorites"
+            element={<Favorites userToken={userToken} />}
+          />
+          <Route path="*" element={<div className="container"> OOPS !!</div>} />
         </Routes>
       </Router>
     </>

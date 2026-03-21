@@ -1,9 +1,46 @@
 import "./Com.css";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Com = () => {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { _id } = useParams();
+  // console.log(_id);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://site--marvel-backend--n9gj5w2bwq52.code.run/comic/" + _id,
+        );
+        // console.log("ici =>", response.data); // {thumbnail: {…}, comics: Array(12), _id: '5fcf91f4d8a2480017b91453', name: '3-D Man', description: '', …}
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <main className="com-page">
-      <h1>Je suis sur la page d'un COMIC</h1>
+    <main className="char-page">
+      <div className="container">
+        {isLoading ? (
+          <h1>Chargement...</h1>
+        ) : (
+          <section>
+            <h1>{data.title}</h1>
+            <img
+              src={`${data.thumbnail.path}/portrait_uncanny.${data.thumbnail.extension}`}
+              alt="character image"
+            />
+            <p>{data.description}</p>
+          </section>
+        )}
+      </div>
     </main>
   );
 };

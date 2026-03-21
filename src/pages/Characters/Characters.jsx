@@ -1,13 +1,42 @@
 import "./Characters.css";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { FaRegHeart } from "react-icons/fa";
 
 const Characters = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [name, setName] = useState("");
   const [page, setPage] = useState(1);
+  const [name, setName] = useState("");
+  const [data, setData] = useState(null);
+  const [favorites, setFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const existingFavorite = async (char) => {
+    try {
+      const token = Cookies.get("userToken");
+
+      const response = await axios.post(
+        "https://site--marvel-backend--n9gj5w2bwq52.code.run/user/favorites/characters",
+        {
+          character: {
+            _id: char._id,
+            name: char.name,
+            thumbnail: char.thumbnail,
+          },
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        },
+      );
+
+      setFavorites(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +67,7 @@ const Characters = () => {
         <h1>Marvel Characters</h1>
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search character"
           value={name}
           id="name"
           onChange={(event) => {
@@ -61,9 +90,18 @@ const Characters = () => {
                         src={`${char.thumbnail.path}/portrait_xlarge.${char.thumbnail.extension}`}
                         alt="character image"
                       />
+
                       <h2>{char.name}</h2>
                       <p>{char.description}</p>
                     </Link>
+                    <button
+                      className="favorite-button"
+                      onClick={() => {
+                        existingFavorite(char);
+                      }}
+                    >
+                      <FaRegHeart />
+                    </button>
                   </article>
                 );
               })}

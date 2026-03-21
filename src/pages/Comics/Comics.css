@@ -16,6 +16,9 @@
     transform 0.3s,
     box-shadow 0.3s;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .comics-page article:hover {
@@ -40,4 +43,8 @@
   opacity: 0.8;
   color: white;
   font-family: "Quicksand", sans-serif;
+}
+
+.comics-page article a {
+  text-decoration: none;
 }

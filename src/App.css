@@ -3,6 +3,7 @@
 body {
   font-family: "Bangers", system-ui;
   background-color: #0d0d0d;
+  color: white;
 }
 
 .container {
@@ -41,6 +42,15 @@ input {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
+}
+
+.card button {
+  background-color: #1a1a1a;
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  margin: 10px 0;
 }
 
 /* PAGINATION */

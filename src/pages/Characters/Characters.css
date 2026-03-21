@@ -16,6 +16,9 @@
     transform 0.3s,
     box-shadow 0.3s;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .characters-page article:hover {

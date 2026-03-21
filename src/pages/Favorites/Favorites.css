@@ -1,0 +1,32 @@
+.favorites-page .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.favorites-page h2 {
+  margin-top: 40px;
+  font-size: 24px;
+}
+.favorites-page .card {
+  display: flex;
+  margin: 70px 0;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
+.favorites-page article {
+  /* border: solid 2px blueviolet; */
+  flex-shrink: 0;
+}
+
+.favorites-page article h3 {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 1.2rem;
+  color: #e62429;
+}
+
+.favorites-page article a {
+  text-decoration: none;
+}
