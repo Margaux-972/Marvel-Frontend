@@ -26,7 +26,7 @@ const Com = () => {
   }, []);
 
   return (
-    <main className="char-page">
+    <main className="com-page">
       <div className="container">
         {isLoading ? (
           <h1>Chargement...</h1>

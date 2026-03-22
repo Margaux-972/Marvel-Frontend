@@ -32,7 +32,8 @@ const Characters = () => {
         },
       );
 
-      setFavorites(response.data);
+      const favIds = response.data.map((item) => item._id);
+      setFavorites(favIds);
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +96,9 @@ const Characters = () => {
                       <p>{char.description}</p>
                     </Link>
                     <button
-                      className="favorite-button"
+                      className={`favorite-button ${
+                        favorites.includes(char._id) ? "active" : ""
+                      }`}
                       onClick={() => {
                         existingFavorite(char);
                       }}

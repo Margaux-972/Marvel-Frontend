@@ -4,21 +4,18 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ handleToken }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isConnected, setIsConnected] = useState(
-    Cookies.get("userToken") || null,
-  );
 
   const handleChange = (event, setState) => {
     setState(event.target.value);
   };
   return (
-    <main>
+    <main className="signup-page">
       <div className="container">
         <h1>S'inscrire</h1>
         <form
@@ -29,7 +26,7 @@ const Signup = () => {
 
             try {
               const response = await axios.post(
-                "http://localhost:3000/user/signup",
+                "https://site--marvel-backend--n9gj5w2bwq52.code.run/user/signup",
                 {
                   email: email,
                   username: username,
@@ -39,10 +36,7 @@ const Signup = () => {
               console.log(response.data);
               if (response.data.token) {
                 setErrorMessage("");
-
-                Cookies.set("userToken", response.data.token);
-                setIsConnected(response.data.token);
-
+                handleToken(response.data.token);
                 navigate("/");
               }
             } catch (error) {

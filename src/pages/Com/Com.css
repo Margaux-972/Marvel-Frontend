@@ -1,0 +1,20 @@
+.com-page p {
+  color: white;
+  margin-top: 40px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.com-page section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.com-page section > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}

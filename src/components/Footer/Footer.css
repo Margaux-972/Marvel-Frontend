@@ -1,0 +1,19 @@
+footer {
+  background-color: #202020;
+  height: 80px;
+  font-family: "Montserrat", sans-serif;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer img {
+  height: 25px;
+}

@@ -4,13 +4,12 @@ import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Favorites = ({ userToken }) => {
+const Favorites = ({ token }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState({
     comics: [],
     characters: [],
   });
-  const token = Cookies.get("userToken");
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -33,18 +32,22 @@ const Favorites = ({ userToken }) => {
 
     if (token) {
       fetchFavorites();
+    } else {
+      setIsLoading(false);
     }
-  }, [userToken]);
+  }, [token]);
 
   return (
     <main className="favorites-page">
       <div className="container">
         <h1>Mes favoris</h1>
-
-        {isLoading ? (
+        {!token ? (
+          <h2>Connecte-toi pour voir tes favoris</h2>
+        ) : isLoading ? (
           <p>Chargement...</p>
-        ) : favorites.length === 0 ? (
-          <p>Aucun favori pour le moment</p>
+        ) : favorites.comics.length === 0 &&
+          favorites.characters.length === 0 ? (
+          <h2>Aucun favori pour le moment</h2>
         ) : (
           <>
             <h2>Comics</h2>

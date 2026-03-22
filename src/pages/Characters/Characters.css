@@ -49,3 +49,11 @@
 .characters-page article a {
   text-decoration: none;
 }
+
+.characters-page .active {
+  color: #e62429;
+}
+
+.characters-page .inactive {
+  color: white;
+}

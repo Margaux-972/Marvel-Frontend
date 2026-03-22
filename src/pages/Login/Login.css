@@ -1,0 +1,24 @@
+.login-page .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page button {
+  display: block;
+  margin: 50px auto;
+  width: 300px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: #202020;
+  color: white;
+  cursor: pointer;
+}
+
+.login-page a {
+  color: #551a6f;
+  padding-bottom: 20px;
+}

@@ -4,20 +4,18 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ handleToken }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isConnected, setIsConnected] = useState(
-    Cookies.get("userToken") || null,
-  );
+
   const handleChange = (event, setState) => {
     setState(event.target.value);
   };
 
   return (
-    <main>
+    <main className="login-page">
       <div className="container">
         <h1>Se connecter</h1>
         <form
@@ -25,7 +23,7 @@ const Login = () => {
             event.preventDefault();
             try {
               const response = await axios.post(
-                "http://localhost:3000/user/login",
+                "https://site--marvel-backend--n9gj5w2bwq52.code.run/user/login",
                 {
                   email: email,
                   password: password,
@@ -33,9 +31,8 @@ const Login = () => {
               );
               console.log(response.data);
               if (response.data.token) {
-                Cookies.set("userToken", response.data.token);
                 // on change le state de connection (pour l'affichage dans le header) :
-                setIsConnected(response.data.token);
+                handleToken(response.data.token);
 
                 navigate("/");
               }

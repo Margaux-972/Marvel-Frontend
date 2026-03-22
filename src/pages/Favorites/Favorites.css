@@ -16,13 +16,11 @@
 }
 
 .favorites-page article {
-  /* border: solid 2px blueviolet; */
   flex-shrink: 0;
 }
 
 .favorites-page article h3 {
   margin-top: 10px;
-  padding: 10px;
   font-size: 1.2rem;
   color: #e62429;
 }

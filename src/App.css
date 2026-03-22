@@ -53,6 +53,20 @@ input {
   margin: 10px 0;
 }
 
+/* FAVORITE */
+
+.favorite-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+}
+
+.favorite-button.active {
+  color: #e62429;
+}
+
 /* PAGINATION */
 .pagination {
   display: flex;
@@ -81,11 +95,4 @@ input {
 .pagination button:disabled {
   background: gray;
   cursor: not-allowed;
-}
-
-/* ACTIVE PAGE */
-.pagination .active {
-  background: white;
-  color: black;
-  font-weight: bold;
 }

@@ -6,10 +6,11 @@ import { useState, useEffect } from "react";
 import { FaRegHeart } from "react-icons/fa";
 
 const Comics = () => {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [title, setTitle] = useState("");
   const [page, setPage] = useState(1);
+  const [title, setTitle] = useState("");
+  const [data, setData] = useState(null);
+  const [favorites, setFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const existingFavorite = async (com) => {
     try {
@@ -31,7 +32,8 @@ const Comics = () => {
         },
       );
 
-      setFavorites(response.data);
+      const favIds = response.data.map((item) => item._id);
+      setFavorites(favIds);
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +92,9 @@ const Comics = () => {
                       <p>{com.description}</p>
                     </Link>
                     <button
-                      className="favorite-button"
+                      className={`favorite-button ${
+                        favorites.includes(com._id) ? "active" : ""
+                      }`}
                       onClick={() => {
                         existingFavorite(com);
                       }}
