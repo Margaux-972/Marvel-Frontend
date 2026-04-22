@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaRegHeart } from "react-icons/fa";
+import ScrollTopButton from "../../components/ScrollTopButton/ScrollTopButton";
 
 const Comics = () => {
   const [page, setPage] = useState(1);
@@ -12,10 +13,10 @@ const Comics = () => {
   const [favorites, setFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const token = Cookies.get("userToken");
+
   const existingFavorite = async (com) => {
     try {
-      const token = Cookies.get("userToken");
-
       const response = await axios.post(
         "https://site--marvel-backend--n9gj5w2bwq52.code.run/user/favorites/comics",
         {
@@ -33,6 +34,27 @@ const Comics = () => {
       );
 
       const favIds = response.data.map((item) => item._id);
+      setFavorites(favIds);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchFavorites = async () => {
+    try {
+      const response = await axios.get(
+        "https://site--marvel-backend--n9gj5w2bwq52.code.run/user",
+        {
+          headers: {
+            authorization: token,
+          },
+        },
+      );
+
+      const comics = response.data.favorites?.comics || [];
+
+      const favIds = comics.map((com) => com._id);
+
       setFavorites(favIds);
     } catch (error) {
       console.log(error);
@@ -57,10 +79,15 @@ const Comics = () => {
       }
     };
     fetchData();
-  }, [title, page]);
+
+    if (token) {
+      fetchFavorites();
+    } else {
+      setFavorites([]);
+    }
+  }, [title, page, token]);
 
   const totalPages = data ? Math.ceil(data.count / data.limit) : 0;
-  // const token =
 
   return (
     <main className="comics-page">
@@ -79,6 +106,7 @@ const Comics = () => {
           <p>Chargement...</p>
         ) : (
           <section>
+            <ScrollTopButton />
             <div className="card">
               {data.results.map((com, index) => {
                 return (
@@ -92,6 +120,9 @@ const Comics = () => {
                       <p>{com.description}</p>
                     </Link>
                     <button
+                      data-tooltip={
+                        !token ? "Connecte-toi pour ajouter aux favoris" : ""
+                      }
                       className={`favorite-button ${
                         favorites.includes(com._id) ? "active" : ""
                       }`}

@@ -23,7 +23,6 @@
 
 .characters-page article:hover {
   transform: translateY(-8px) scale(1.03);
-  /* box-shadow: 0 10px 25px rgba(230, 36, 41, 0.4); */
   box-shadow:
     0 0 15px #e62429,
     0 0 30px #e62429;
@@ -34,6 +33,7 @@
   padding: 10px;
   font-size: 1.2rem;
   color: #e62429;
+  text-align: center;
 }
 
 /* DESCRIPTION */
@@ -43,6 +43,10 @@
   opacity: 0.8;
   color: white;
   font-family: "Quicksand", sans-serif;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 0 0 0 15px;
+  width: 90%;
 }
 
 /* LINK */
@@ -56,4 +60,22 @@
 
 .characters-page .inactive {
   color: white;
+}
+
+.favorite-button {
+  position: relative;
+}
+
+.favorite-button[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 1;
 }

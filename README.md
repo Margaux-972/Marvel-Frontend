@@ -1,4 +1,4 @@
-# <img src="./src/assets/images/iconemarvel.png" width="30"/> Marvel Explorer
+# <img src="./src/assets/images/iconemarvel.png" width="30"/> My Marvel
 
 A web application inspired by the Marvel universe, allowing users to explore characters and comics, with a personalized favorites system available for authenticated users.
 
@@ -60,6 +60,34 @@ Marvel Explorer is a full-stack application that consumes an external API to dyn
 
 - Performance optimization (caching)
 - Enhanced UI/UX (animations, dark mode)
+
+## Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/Margaux-972/Marvel-Frontend
+cd Marvel-Frontend
+```
+
+2. Install dependencies
+   Using Yarn:
+
+```bash
+yarn install
+```
+
+3. Start the development server
+
+```bash
+yarn dev
+```
+
+The app will run on:
+
+```
+http://localhost:5173
+```
 
 ## 🎯 Purpose
 

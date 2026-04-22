@@ -11,8 +11,8 @@ import Footer from "./components/Footer/Footer";
 import Favorites from "./pages/Favorites/Favorites";
 import Characters from "./pages/Characters/Characters";
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -43,9 +43,7 @@ function App() {
           />
           <Route
             path="/favorites"
-            element={
-              token ? <Favorites token={token} /> : <Navigate to="/login" />
-            }
+            element={token ? <Favorites token={token} /> : <Favorites />}
           />
           <Route path="*" element={<div className="container"> OOPS !!</div>} />
         </Routes>

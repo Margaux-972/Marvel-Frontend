@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaRegHeart } from "react-icons/fa";
+import ScrollTopButton from "../../components/ScrollTopButton/ScrollTopButton";
 
 const Characters = () => {
   const [page, setPage] = useState(1);
@@ -12,10 +13,10 @@ const Characters = () => {
   const [favorites, setFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const token = Cookies.get("userToken");
+
   const existingFavorite = async (char) => {
     try {
-      const token = Cookies.get("userToken");
-
       const response = await axios.post(
         "https://site--marvel-backend--n9gj5w2bwq52.code.run/user/favorites/characters",
         {
@@ -33,6 +34,27 @@ const Characters = () => {
       );
 
       const favIds = response.data.map((item) => item._id);
+      setFavorites(favIds);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchFavorites = async () => {
+    try {
+      const response = await axios.get(
+        "https://site--marvel-backend--n9gj5w2bwq52.code.run/user",
+        {
+          headers: {
+            authorization: token,
+          },
+        },
+      );
+
+      const characters = response.data.favorites?.characters || [];
+
+      const favIds = characters.map((char) => char._id);
+
       setFavorites(favIds);
     } catch (error) {
       console.log(error);
@@ -58,7 +80,12 @@ const Characters = () => {
     };
 
     fetchData();
-  }, [name, page]);
+    if (token) {
+      fetchFavorites();
+    } else {
+      setFavorites([]);
+    }
+  }, [name, page, token]);
 
   const totalPages = data ? Math.ceil(data.count / data.limit) : 0;
 
@@ -79,6 +106,7 @@ const Characters = () => {
           <p>Chargement...</p>
         ) : (
           <section>
+            <ScrollTopButton />
             <div className="card">
               {data.results.map((char, index) => {
                 // console.log(char.name); // Aaron Stack
@@ -96,6 +124,9 @@ const Characters = () => {
                       <p>{char.description}</p>
                     </Link>
                     <button
+                      data-tooltip={
+                        !token ? "Connecte-toi pour ajouter aux favoris" : ""
+                      }
                       className={`favorite-button ${
                         favorites.includes(char._id) ? "active" : ""
                       }`}
